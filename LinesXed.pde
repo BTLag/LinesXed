@@ -151,3 +151,11 @@ int dist(int x1,int y1, int x2, int y2){
 float slope(int x1, int y1, int x2, int y2){
   return(-1.0*(float(y1-y2)/float(x1-x2)));
 }
+
+int yOfLineAtX(int x1, int y1, int x2, int y2, int x){
+  if(x < x1 || x > x2){
+    println("Error in yOfLineAtX. X is out of bounds.");
+    return(0);
+  }
+  return(round(float((x - x1))*slope(x1,y1,x2,y2))+y1);
+}
