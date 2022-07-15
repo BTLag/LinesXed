@@ -37,7 +37,19 @@ boolean linesXed(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4)
   } else if(x2 < x4){//p1,p3,p2,p4
     return(true);
   } else {//p1,p3,p4,p2
-    return(true);
+    if(yOfLineAtX(x1, y1, x2, y2, p3x) > p3y){//ln(p1,p2) is above p3 at x(p3)
+      if(yOfLineAtX(x1, y1, x2, y2, p4x) > p4y){//ln(p1,p2) is above p4 at x(p4)
+        return(false);//l1 is fully above l2
+      } else {//l1 starts off above but ends up bellow
+        return(true);
+      }
+    } else {//ln(p1,p2) is below p3 at x(p3)
+      if(yOfLineAtX(x1, y1, x2, y2, p4x) > p4y){//ln(p1,p2) is above p4 at x(p4)
+        return(true);//l1 starts off bellow but ends up above
+      } else {//l1 is fully bellow l2
+        return(false);
+      }
+    }
   }
 }
 
