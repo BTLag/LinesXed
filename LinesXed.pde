@@ -135,3 +135,7 @@ void organizeDots(){
 int dist(int x1,int y1, int x2, int y2){
   return(round(sqrt(( (x1-x2)*(x1-x2) ) + ( (y1-y2)*(y1-y2) ))));
 }
+
+float slope(int x1, int y1, int x2, int y2){
+  return(-1.0*(float(y1-y2)/float(x1-x2)));
+}
