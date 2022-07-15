@@ -32,7 +32,13 @@ void draw(){
 }
 
 boolean linesXed(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4){
-  return(false);
+  if(x2 < x3){//p1,p2,p3,p4
+    return(false);
+  } else if(x2 < x4){//p1,p3,p2,p4
+    return(true);
+  } else {//p1,p3,p4,p2
+    return(true);
+  }
 }
 
 void dragDots(){
