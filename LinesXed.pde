@@ -12,13 +12,21 @@ void draw(){
   strokeWeight(20);
   line(p1x,p1y,p2x,p2y);
   line(p3x,p3y,p4x,p4y);
-  fill(100);
+  if(linesXed(p1x,p1y,p2x,p2y,p3x,p3y,p4x,p4y)){
+    fill(50);
+  } else {
+    fill(250);
+  }
   noStroke();
   ellipse(p1x,p1y,50,50);
   ellipse(p2x,p2y,50,50);
   ellipse(p3x,p3y,50,50);
   ellipse(p4x,p4y,50,50);
   dragDots();
+}
+
+boolean linesXed(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4){
+  return(false);
 }
 
 void dragDots(){
