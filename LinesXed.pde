@@ -8,20 +8,26 @@ void setup(){
 
 void draw(){
   background(80, 0, 60);
-  stroke(20);
+  if(linesXed(p1x,p1y,p2x,p2y,p3x,p3y,p4x,p4y)){
+    stroke(150);
+  } else {
+    stroke(50);
+  }
   strokeWeight(20);
   line(p1x,p1y,p2x,p2y);
   line(p3x,p3y,p4x,p4y);
-  if(linesXed(p1x,p1y,p2x,p2y,p3x,p3y,p4x,p4y)){
-    fill(50);
-  } else {
-    fill(250);
-  }
   noStroke();
+  fill(250);
   ellipse(p1x,p1y,50,50);
   ellipse(p2x,p2y,50,50);
   ellipse(p3x,p3y,50,50);
   ellipse(p4x,p4y,50,50);
+  fill(0);
+  textAlign(CENTER,CENTER);
+  text("1",p1x,p1y);
+  text("2",p2x,p2y);
+  text("3",p3x,p3y);
+  text("4",p4x,p4y);
   dragDots();
 }
 
