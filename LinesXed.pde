@@ -35,22 +35,22 @@ boolean linesXed(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4)
   if(x2 < x3){//p1,p2,p3,p4
     return(false);
   } else if(x2 < x4){//p1,p3,p2,p4
-    if(yOfLineAtX(x1, y1, x2, y2, p3x) > p3y){//l1 is above p3 at p3.x
-      if(yOfLineAtX(x2, y2, x3, y3, p2x) > p2y){//l2 is above p2 at p2.x
+    if(yOfLineAtX(x1, y1, x2, y2, x3) > y3){//l1 is above p3 at p3.x
+      if(yOfLineAtX(x3, y3, x4, y4, x2) > y2){//l2 is above p2 at p2.x
         return(true);
       } else {//l2 is bellow p2 at p2.x
         return(false);
       }
     } else {//l1 is bellow p3 at p3.x
-      if(yOfLineAtX(x2, y2, x3, y3, p2x) > p2y){//l2 is above p2 at p2.x
+      if(yOfLineAtX(x3, y3, x4, y4, x2) > y2){//l2 is above p2 at p2.x
         return(false);
       } else {//l2 is bellow p2 at p2.x
         return(true);
       }
     }//l1 is bellow p3 at x(p3)
   } else {//p1,p3,p4,p2
-    if(yOfLineAtX(x1, y1, x2, y2, p3x) > p3y){//l1 is above p3 at x(p3)
-      if(yOfLineAtX(x1, y1, x2, y2, p4x) > p4y){//l1 is above p4 at x(p4)
+    if(yOfLineAtX(x1, y1, x2, y2, x3) > y3){//l1 is above p3 at x(p3)
+      if(yOfLineAtX(x1, y1, x2, y2, x4) > y4){//l1 is above p4 at x(p4)
         return(false);//l1 is fully above l2
       } else {//l1 starts off above but ends up bellow
         return(true);
@@ -173,13 +173,9 @@ int dist(int x1,int y1, int x2, int y2){
 }
 
 float slope(int x1, int y1, int x2, int y2){
-  return(-1.0*(float(y1-y2)/float(x1-x2)));
+  return((float(y1-y2)/float(x1-x2)));
 }
 
 int yOfLineAtX(int x1, int y1, int x2, int y2, int x){
-  if(x < x1 || x > x2){
-    println("Error in yOfLineAtX. X is out of bounds.");
-    return(0);
-  }
   return(round(float((x - x1))*slope(x1,y1,x2,y2))+y1);
 }
