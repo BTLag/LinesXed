@@ -9,9 +9,9 @@ void setup(){
 void draw(){
   background(80, 0, 60);
   if(linesXed(p1x,p1y,p2x,p2y,p3x,p3y,p4x,p4y)){
-    stroke(150);
+    stroke(150,0,0);
   } else {
-    stroke(50);
+    stroke(0,150,0);
   }
   strokeWeight(20);
   line(p1x,p1y,p2x,p2y);
@@ -35,10 +35,22 @@ boolean linesXed(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4)
   if(x2 < x3){//p1,p2,p3,p4
     return(false);
   } else if(x2 < x4){//p1,p3,p2,p4
-    return(true);
+    if(yOfLineAtX(x1, y1, x2, y2, p3x) > p3y){//l1 is above p3 at p3.x
+      if(yOfLineAtX(x2, y2, x3, y3, p2x) > p2y){//l2 is above p2 at p2.x
+        return(true);
+      } else {//l2 is bellow p2 at p2.x
+        return(false);
+      }
+    } else {//l1 is bellow p3 at p3.x
+      if(yOfLineAtX(x2, y2, x3, y3, p2x) > p2y){//l2 is above p2 at p2.x
+        return(false);
+      } else {//l2 is bellow p2 at p2.x
+        return(true);
+      }
+    }//l1 is bellow p3 at x(p3)
   } else {//p1,p3,p4,p2
-    if(yOfLineAtX(x1, y1, x2, y2, p3x) > p3y){//ln(p1,p2) is above p3 at x(p3)
-      if(yOfLineAtX(x1, y1, x2, y2, p4x) > p4y){//ln(p1,p2) is above p4 at x(p4)
+    if(yOfLineAtX(x1, y1, x2, y2, p3x) > p3y){//l1 is above p3 at x(p3)
+      if(yOfLineAtX(x1, y1, x2, y2, p4x) > p4y){//l1 is above p4 at x(p4)
         return(false);//l1 is fully above l2
       } else {//l1 starts off above but ends up bellow
         return(true);
