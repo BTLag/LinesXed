@@ -36,6 +36,7 @@ void dragDots(){
       p4x = mouseX;
       p4y = mouseY;
     }
+    organizeDots();
   }
 }
 
@@ -48,6 +49,7 @@ void flingDots(){
   p3y = round(random(50,450));
   p4x = round(random(50,450));
   p4y = round(random(50,450));
+  organizeDots();
 }
 
 int selectedDot = 0;
@@ -63,6 +65,62 @@ void mousePressed(){
     selectedDot = 4;
   } else {
     selectedDot = 0;
+  }
+}
+
+void organizeDots(){
+  //make sure p1 is to the left of p2 and p3 is to the left of p4
+  int XedTemp;
+  if (p1x > p2x) {
+    XedTemp = p1x;
+    p1x = p2x;
+    p2x = XedTemp;
+    XedTemp = p1y;
+    p1y = p2y;
+    p2y = XedTemp;
+    if(selectedDot == 1){
+      selectedDot = 2;
+    } else if (selectedDot == 2){
+      selectedDot = 1;
+    }
+  }
+  if (p3x > p4x) {
+    XedTemp = p3x;
+    p3x = p4x;
+    p4x = XedTemp;
+    XedTemp = p3y;
+    p3y = p4y;
+    p4y = XedTemp;
+    if(selectedDot == 3){
+      selectedDot = 4;
+    } else if (selectedDot == 4){
+      selectedDot = 3;
+    }
+  }
+  //make sure line p1-p2 is left most
+  if (p1x > p3x) {
+    XedTemp = p1x;
+    p1x = p3x;
+    p3x = XedTemp;
+    XedTemp = p1y;
+    p1y = p3y;
+    p3y = XedTemp;
+
+    XedTemp = p2x;
+    p2x = p4x;
+    p4x = XedTemp;
+    XedTemp = p2y;
+    p2y = p4y;
+    p4y = XedTemp;
+    if(selectedDot == 1){
+      selectedDot = 3;
+    } else if (selectedDot == 2){
+      selectedDot = 4;
+    } else if(selectedDot == 3){
+      selectedDot = 1;
+    } else if (selectedDot == 4){
+      selectedDot = 2;
+    }
   }
 }
 
